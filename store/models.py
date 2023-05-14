@@ -45,9 +45,10 @@ class Customer(models.Model):
     phone = models.CharField(max_length=255, null=True, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     membership = models.CharField(max_length=1, choices=MEMBERSHIP_CHOICES, default=MEMBERSHIP_BRONZE)
-    orders = models.ForeignKey('Order', on_delete=models.CASCADE)
+    orders = models.ForeignKey('Order', on_delete=models.CASCADE, null=True)
 
     class Meta:
+        db_table = "store_customer"
         indexes = [
             models.Index(fields=['last_name', 'first_name'])
         ]
